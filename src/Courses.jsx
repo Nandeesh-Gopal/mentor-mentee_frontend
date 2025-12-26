@@ -1,23 +1,23 @@
+import { useNavigate } from "react-router-dom";
 function Courses(){
+    const navigate = useNavigate();
+    const courses = ['dsa','full stack','node .js','devops','cloud'];
+    const handleEnroll = (course) => {
+        navigate('/register',{
+            state: {course}
+        });
+    }
     return(
         <div>
-            <h2>Courses Page</h2>
-            
-            <h4>select course</h4>
-
-            <p>dsa</p>
-            <button>Register</button>
-            <p>full stack</p>
-            <button>Register</button>
-
-            <p>node .js</p>
-            <button>Register</button>
-
-            <p>devops</p>
-            <button>Register</button>
-
-            <p>cloud</p>
-            <button>Register</button>
+            <h1>Courses Page</h1>
+            {
+                courses.map((course,index) => (
+                    <div key={index}>
+                       <li>{course}</li>
+                       <button onClick={()=>handleEnroll(course)}>Enroll</button>
+                    </div>
+                ))
+            }
 
         </div>
     )
